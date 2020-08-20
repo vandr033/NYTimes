@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">NY Times</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search Articles</string>
+    <string name="nav_books">Bestseller Books</string>
+    <string name="nav_settings">Settings</string>
+
+    <string name="buy_book">Buy on Amazon</string>
+    <string name="search">Search</string>
+    <string name="first_page">First page article in %s</string>
+
+</resources>
