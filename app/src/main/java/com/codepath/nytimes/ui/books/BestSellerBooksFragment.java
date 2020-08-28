@@ -17,13 +17,14 @@ import com.codepath.nytimes.networking.CallbackResponse;
 import com.codepath.nytimes.networking.NYTimesApiClient;
 import com.codepath.nytimes.R;
 import com.codepath.nytimes.models.BestSellerBook;
+import com.codepath.nytimes.ui.search.ArticleResultFragment;
 
 import java.util.List;
 
 /**
  * A fragment representing a list of Items.
  */
-public class BestSellerBooksFragment extends Fragment implements OnListFragmentInteractionListener{
+public class BestSellerBooksFragment extends Fragment implements OnListFragmentInteractionListener {
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -32,11 +33,8 @@ public class BestSellerBooksFragment extends Fragment implements OnListFragmentI
     public BestSellerBooksFragment() {
     }
 
-    @SuppressWarnings("unused")
-    public static BestSellerBooksFragment newInstance(int columnCount) {
+    public static BestSellerBooksFragment newInstance() {
         BestSellerBooksFragment fragment = new BestSellerBooksFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -50,6 +48,7 @@ public class BestSellerBooksFragment extends Fragment implements OnListFragmentI
         Context context = view.getContext();
         recyclerView.setLayoutManager(new GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false));
         updateAdapter(progressBar, recyclerView);
+        getActivity().setTitle(getString(R.string.action_bar_books));
         return view;
     }
 
@@ -87,6 +86,5 @@ public class BestSellerBooksFragment extends Fragment implements OnListFragmentI
 
     @Override
     public void onItemClick(BestSellerBook item) {
-        Toast.makeText(getContext(), "test", Toast.LENGTH_LONG).show();
     }
 }

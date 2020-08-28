@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class ArticleResultFragment extends Fragment {
     private ContentLoadingProgressBar progressSpinner;
     private String savedQuery;
     private EndlessRecyclerViewScrollListener scrollListener;
+    MyArticleResultRecyclerViewAdapter adapter = new MyArticleResultRecyclerViewAdapter();
 
 
     /**
@@ -46,28 +48,32 @@ public class ArticleResultFragment extends Fragment {
     public ArticleResultFragment() {
     }
 
+    public static ArticleResultFragment newInstance() {
+        ArticleResultFragment fragment = new ArticleResultFragment();
+        return fragment;
+    }
+
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
-        SearchView item = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        item.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                loadNewArticlesByQuery(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return true;
-            }
-        });
-
+        // TODO (checkpoint #4): Uncomment this code when you implement the search menu
+//        SearchView item = (SearchView) menu.findItem(R.id.action_search).getActionView();
+//        item.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                loadNewArticlesByQuery(query);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                return true;
+//            }
+//        });
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
     }
 
     @Override
@@ -81,7 +87,7 @@ public class ArticleResultFragment extends Fragment {
         Context context = view.getContext();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(new MyArticleResultRecyclerViewAdapter());
+        recyclerView.setAdapter(adapter);
 
         scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
@@ -92,6 +98,7 @@ public class ArticleResultFragment extends Fragment {
             }
         };
         recyclerView.addOnScrollListener(scrollListener);
+        getActivity().setTitle(getString(R.string.action_bar_search));
         return view;
     }
 
@@ -142,8 +149,9 @@ public class ArticleResultFragment extends Fragment {
             @Override
             public void onFailure(Throwable error) {
                 Log.d("ArticleResultFragment", "failure load article " + error.getMessage());
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT);
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }, savedQuery, page);
     }
+
 }
