@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mnuHome"
+        android:icon="@android:drawable/checkbox_off_background"
+        android:title="@string/home"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/mnuBestSellerBooks"
+        android:icon="@android:drawable/alert_light_frame"
+        android:title="Best Seller Book"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/mnuSearchArticles"
+        android:icon="@android:drawable/alert_light_frame"
+        android:title="Search Articles"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/mnuSettings"
+        android:icon="@android:drawable/alert_light_frame"
+        android:title="Settings"
+        app:showAsAction="always" />
+</menu>
